@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+MENU=$(printf "%s\t%s\n" \
+  "" "Lock" \
+  "⏾" "Suspend" \
+  "⇠" "Logout" \
+  "⏻" "Power off")
+
+CHOICE=$(printf "%s\n" "$MENU" | fuzzel --dmenu -l 4 --prompt="power ")
+
+case "$CHOICE" in
+  "	Lock")
+    loginctl lock-session
+    ;;
+  "⏾	Suspend")
+    systemctl suspend
+    ;;
+  "⇠	Logout")
+    # Ends Hyprland cleanly
+    loginctl terminate-session self
+    ;;
+  "⏻	Power off")
+    systemctl poweroff
+    ;;
+  *)
+    exit 0
+    ;;
+esac

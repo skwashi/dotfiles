@@ -1,0 +1,159 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "height": 30,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": ["hyprland/window"],
+
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "network",
+        "hyprland/language",
+        "battery",
+        "clock",
+        "idle_inhibitor",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name} {windows}",
+
+        "workspace-taskbar": {
+			"enable": true,
+			// "update-active-window": true
+			"format": "{icon}",
+			"icon-size": 18,
+			// "ignore-list":
+			"on-click-window": "hyprctl dispatch focuswindow address:{address}"
+		},
+
+        "format-window-separator": " ",
+        "window-rewrite-default": "·",
+        "window-rewrite": {
+            "emacs":     "",
+            "alacritty": "🖥️",
+            "kitty":     "🐱",
+            "foot":      "👣",
+
+            "brave":     "🌐",
+            "chromium":  "🌐",
+            "firefox":   "🌐",
+
+            "teams":      "S",
+            "slack":      "S",
+            "discord":    "D",
+
+            "mpv":       "🎵",
+            "code":      "📝",
+            "thunar":    "📁"
+        },
+
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        },
+
+        "show-special": true,
+        "special-visible-only": true,
+
+        "disable-scroll": false,
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%a %d %b %Y}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+
+   "hyprland/language": {
+       "format": "{}",
+       "format-en": "en",
+       "format-us": "us",
+       "format-sv": "sv",
+       "format-se": "se",
+       "keyboard-name": "at-translated-set-2-keyboard",
+       "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+   },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": " ({signalStrength}%)",
+        "format-ethernet": "",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "iwgtk",
+        "tooltip": true
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "~/.local/bin/dm-power"
+    }
+}

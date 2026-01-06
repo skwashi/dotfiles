@@ -1,0 +1,191 @@
+/* =========================
+ * Global
+ * ========================= */
+
+* {
+    font-family: "Inconsolata LGC", "Symbols Nerd Font", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+/* Remove default GTK styling */
+button {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+window#waybar {
+    background: rgba(20, 20, 20, 0.75);
+    /* background-color: rgba(43, 48, 59, 0.75); */
+    color: #e0e0e0;
+    border-bottom: 1px solid #333;
+    transition: background 0.2s ease;
+}
+
+/* =========================
+ * Module spacing & alignment
+ * ========================= */
+
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0 6px;
+}
+
+.module {
+    padding: 0 8px;
+    margin: 0;
+    border-radius: 4px;
+    transition: background-color 120ms ease;
+}
+
+.modules-right .module:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+ * Workspaces
+ * ========================= */
+
+#workspaces {
+    padding: 0;
+}
+
+#workspaces button,
+#workspaces button:hover,
+#workspaces button:active,
+#workspaces button:checked {
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+}
+
+#workspaces button image {
+    background: transparent;
+    box-shadow: none;
+}
+
+#workspaces button {
+    padding: 1px 6px;
+    margin: 1px 4px;
+    color: #888;
+    background: transparent;
+    border: none;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    font-weight: bold;
+    /* border-top: 1px; */
+    /* border-style: solid; */
+    /* border-color: rgba(200, 200, 255, 0.35); */
+    border-radius: 0;
+    box-shadow: 0 -1px 0 rgba(200, 200, 255, 0.35);
+}
+
+#workspaces button.visible {
+    color: #c0c0c0;
+}
+
+#workspaces button.urgent {
+    color: #ff5555;
+}
+
+/* workspace taskbar icons */
+#workspaces image {
+    margin: 0 2px;
+}
+
+/* =========================
+ * Window title (center)
+ * ========================= */
+
+#window {
+    padding: 0 10px;
+    color: #cccccc;
+    font-style: italic;
+}
+
+/* =========================
+ * System indicators
+ * ========================= */
+
+#pulseaudio,
+#network,
+#battery,
+#clock,
+#language,
+#idle_inhibitor,
+#tray {
+    padding: 0 8px;
+}
+
+/* =========================
+ * Audio
+ * ========================= */
+
+#pulseaudio:hover {
+    background-color: rgba(180, 255, 180, 0.15);
+}
+
+/* =========================
+ * Network
+ * ========================= */
+
+#network:hover {
+    background-color: rgba(100, 180, 255, 0.15);
+}
+
+/* =========================
+ * Battery states
+ * ========================= */
+
+#battery.warning {
+    color: #ffb86c;
+}
+
+#battery.critical {
+    color: #ff5555;
+}
+
+/* =========================
+ * Idle inhibitor
+ * ========================= */
+
+#idle_inhibitor:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+#idle_inhibitor.activated {
+    background-color: #e0e0e0;
+    color: rgba(20, 20, 20, 0.75);
+}
+
+/* =========================
+ * Power button
+ * ========================= */
+
+#custom-power {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #ff6666;
+}
+
+#custom-power:hover {
+    background: rgba(255, 102, 102, 0.15);
+    color: #ff8888;
+}
+
+/* =========================
+ * Tray icons
+ * ========================= */
+
+#tray {
+    padding-right: 4px;
+}
+
+#tray > .passive {
+    opacity: 0.6;
+}

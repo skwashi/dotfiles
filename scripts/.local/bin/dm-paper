@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WALL_DIR="$HOME/Pictures/wallpapers"
+CACHE="$HOME/.cache/wallpaper-thumbs"
+
+mkdir -p "$CACHE"
+
+list_wallpapers() {
+  find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" \) | while read -r img; do
+    echo -en "$(basename "$img")\0icon\x1f$img\n"
+  done
+}
+
+selected=$(
+  list_wallpapers |
+    rofi -dmenu -i -show-icons \
+         -theme-str "\
+                    listview { columns: 3; lines: 3; } \
+                    element { orientation: vertical; } \
+                    element-icon { size: 128px; } \
+                    "
+)
+
+[[ -z "$selected" ]] && exit 0
+
+hyprctl hyprpaper wallpaper ",${WALL_DIR}/${selected}"

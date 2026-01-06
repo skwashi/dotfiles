@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+choice=$(
+  printf "%s\t%s\n" \
+    "󰸉" "Wallpaper" \
+    "" "Wi-Fi" \
+    "" "Audio" \
+    "⚙" "Settings" \
+    "⏻" "Power" |
+  fuzzel --dmenu --prompt="Menu"
+)
+
+case "$choice" in
+  "󰸉	Wallpaper")  ~/.local/bin/dm-paper ;;
+  "📡	Wi-Fi")      ~/bin/wifi-menu ;;
+  "🔊	Audio")     ~/bin/audio-menu ;;
+  "🖥	Displays")  ~/bin/display-menu ;;
+  "⚙️	Settings")  ~/bin/settings-menu ;;
+  "⏻	Power")      ~/.local/bin/dm-power ;;
+  *) exit 0 ;;
+esac

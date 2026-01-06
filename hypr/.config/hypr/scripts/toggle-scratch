@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+NAME="$1"
+TITLE="$2"
+CMD="$3"
+
+# Check if window exists
+if ! hyprctl clients -j | jq -e \
+  ".[] | select(.title == \"$TITLE\")" >/dev/null
+then
+  eval "$CMD"
+  sleep 0.05
+fi
+
+hyprctl dispatch togglespecialworkspace "$NAME"
