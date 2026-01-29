@@ -1,15 +1,39 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-NAME="$1"
-TITLE="$2"
-CMD="$3"
+TITLE="$1"
+CMD="$2"
+HIDE_WS="special:hidden"
 
-# Check if window exists
-if ! hyprctl clients -j | jq -e \
-  ".[] | select(.title == \"$TITLE\")" >/dev/null
-then
-  eval "$CMD"
-  sleep 0.05
+# Get active workspace
+ACTIVE_WS="$(hyprctl activeworkspace -j | jq -r .id)"
+
+# Find window by title
+WIN_JSON="$(hyprctl clients -j | jq -r ".[] | select(.title == \"$TITLE\")")"
+
+if [ -z "$WIN_JSON" ]; then
+  # Not running → spawn
+  eval "$CMD" &
+  exit 0
 fi
 
-hyprctl dispatch togglespecialworkspace "$NAME"
+WIN_WS="$(echo "$WIN_JSON" | jq -r .workspace.id)"
+WIN_ADDR="$(echo "$WIN_JSON" | jq -r .address)"
+
+if [ "$WIN_WS" = "$ACTIVE_WS" ]; then
+  # Currently focused window (may be empty)
+  PREV_FOCUS="$(hyprctl activewindow -j | jq -r '.address // empty')"
+
+  # Visible → hide it (send to a quiet workspace)
+  hyprctl dispatch focuswindow address:"$WIN_ADDR"
+  hyprctl dispatch movetoworkspacesilent "$HIDE_WS"
+
+  # Restore previous focus (if it still exists)
+  if [ -n "$PREV_FOCUS" ] && [ "$PREV_FOCUS" != "$WIN_ADDR" ]; then
+    hyprctl dispatch focuswindow address:"$PREV_FOCUS" || true
+  fi
+else
+  # Hidden or elsewhere → bring here
+  hyprctl dispatch movetoworkspace "$ACTIVE_WS",address:"$WIN_ADDR"
+  hyprctl dispatch focuswindow address:"$WIN_ADDR"
+fi
