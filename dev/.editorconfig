@@ -49,6 +49,12 @@ indent_size = 2
 [*.yaml.*]
 indent_size = 2
 
+[*.yaml.j2]
+indent_size = 2
+
+[*.ynl.j2]
+indent_size = 2
+
 [lang/*]
 indent_size = 2
 
