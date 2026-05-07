@@ -28,3 +28,6 @@
 
 [diff]
     colorMoved = default
+[safe]
+	directory = /home/code/src/esm
+	directory = /home/code/esm
