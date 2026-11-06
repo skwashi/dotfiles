@@ -1,0 +1,8 @@
+# ~/.config/systemd/user/bedtime-warning.service
+
+[Unit]
+Description=Bedtime warning
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/bedtime-warning

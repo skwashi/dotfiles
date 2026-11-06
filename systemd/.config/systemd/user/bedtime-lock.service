@@ -1,0 +1,8 @@
+# ~/.config/systemd/user/bedtime-lock.service
+
+[Unit]
+Description=Bedtime lock
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/bedtime-lock

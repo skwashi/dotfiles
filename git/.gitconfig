@@ -24,10 +24,14 @@
     side-by-side = false
 
 [merge]
-    conflictstyle = diff3
+	conflictstyle = zdiff3
 
 [diff]
     colorMoved = default
 [safe]
 	directory = /home/code/src/esm
 	directory = /home/code/esm
+[rebase]
+	conflictstyle = zdiff3
+[init]
+	defaultBranch = main

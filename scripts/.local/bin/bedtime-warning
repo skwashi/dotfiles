@@ -1,0 +1,5 @@
+#!/bin/sh
+
+zenity --info \
+  --title="Läggdags !" \
+  --text="Avsluta det du håller på med nu, och gå och lägg dig senast 23:00, annars blir det smisk på bara stjärten!"

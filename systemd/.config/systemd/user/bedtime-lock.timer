@@ -1,0 +1,11 @@
+# ~/.config/systemd/user/bedtime-lock.timer
+
+[Unit]
+Description=Lock screen at 23:00
+
+[Timer]
+OnCalendar=*-*-* 23:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,22 @@
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
+
+# Copy/paste: one clipboard, no primary selection.
+# Hyprland's SUPER+C/V send Ctrl+Insert / Shift+Insert to every window
+# (see hypr/binds.lua), so make those copy/paste the regular clipboard here.
+# Ctrl+Shift+C/V still work as alacritty's defaults.
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Control"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Insert"
+mods = "Shift"
+action = "Paste" # default is PasteSelection (primary)
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "None"

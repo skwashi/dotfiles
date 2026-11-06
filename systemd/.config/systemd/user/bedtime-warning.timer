@@ -1,0 +1,11 @@
+# ~/.config/systemd/user/bedtime-warning.timer
+
+[Unit]
+Description=Bedtime warning at 22:55
+
+[Timer]
+OnCalendar=*-*-* 22:55:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
